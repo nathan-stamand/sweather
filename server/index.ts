@@ -25,8 +25,6 @@ app.use(
   expressMiddleware(server),
 )
 
-console.log('what da hell')
-
 await new Promise<void>((resolve) => httpServer.listen({
   port
 }, resolve));
