@@ -11,7 +11,7 @@ function App() {
   const [location, setLocation] = useState('');
   const [current, setCurrent] = useState('');
   const [forecast, setForecast] = useState('');
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     client.query({
@@ -26,12 +26,17 @@ function App() {
      `,
     }).then((result) => {
       console.log(result)
+      setLoading(result.loading);
       const { location, current, forecast } = result.data.forecast;
       setLocation(location);
       setCurrent(current);
       setForecast(forecast);
     });
   }, []);
+
+  if (loading) {
+    return 'Loading...';
+  }
 
   return (
     <>
