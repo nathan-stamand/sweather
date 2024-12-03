@@ -4,7 +4,7 @@ import { expressMiddleware } from '@apollo/server/express4';
 import express from 'express';
 import http from 'http';
 import cors from 'cors'
-import { resolvers, typeDefs } from './schema/index.mjs';
+import { resolvers, typeDefs } from './schema/index.js';
 
 const port = 8000;
 const app = express();
@@ -20,10 +20,10 @@ await server.start();
 
 app.use(
   '/graphql',
-  cors<cors.CorsRequest>({ origin: ['http://localhost:3000'] }),
+  cors<cors.CorsRequest>({ origin: 'http://localhost:3000' }),
   express.json(),
   expressMiddleware(server),
-)
+);
 
 await new Promise<void>((resolve) => httpServer.listen({
   port

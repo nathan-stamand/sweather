@@ -1,7 +1,7 @@
-import { location } from '../tests/location.ts'
+import { location } from "../tests/location.ts"
 
 const weather = {
-  location,
+  location: location,
 }
 
 export const resolvers = {
