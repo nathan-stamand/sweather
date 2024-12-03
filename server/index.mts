@@ -1,21 +1,41 @@
-import express from 'express'
-import bodyParser from 'body-parser';
-import cors from 'cors'
+import { ApolloServer } from '@apollo/server';
+import { startStandaloneServer } from '@apollo/server/standalone';
 
-const app = express();
 const port = 8000;
 
-app.use(bodyParser.json());
+const typeDefs = `#graphql
+type Forecast {
+  location: String
+  current: String 
+  forecast: String
+}
 
-app.use(cors());
+type Query {
+  forecast: Forecast
+}
+`;
 
-app.get('/', (req, res) => {
-  console.log(req)
-  res.json({ message: 'testing!' });
+const forecast = {
+  location: 'this is the location data',
+  current: "this is the current day's data",
+  forecast: 'this is the forecast data',
+}
+
+const resolvers = {
+  Query: {
+    forecast: () => forecast,
+  }
+}
+
+const server = new ApolloServer({
+  typeDefs,
+  resolvers,
 });
 
-app.listen(port, () => {
-  return console.log(`listening on http://localhost:${port}`);
+const { url } = await startStandaloneServer(server, {
+  listen: { port }
 });
+
+console.log(`Server running at ${url}`)
 
 export default {}
