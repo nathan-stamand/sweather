@@ -1,46 +1,25 @@
 import './App.css'
-import { gql } from '@apollo/client';
-import { useEffect, useState } from 'react';
-import { client } from './lib/apollo-client';
+import { useQuery } from '@apollo/client';
+import { GET_WEATHER } from './lib/queries';
 
 function App() {
-  const [location, setLocation] = useState('');
-  const [current, setCurrent] = useState('');
-  const [forecast, setForecast] = useState('');
-  const [loading, setLoading] = useState(true);
+  const { loading, error, data } = useQuery(GET_WEATHER);
 
-  useEffect(() => {
-    client.query({
-      query: gql`
-        query GetForecast {
-          forecast {
-            current
-            location
-            forecast
-          }
-        }
-     `,
-    }).then((result) => {
-      console.log(result)
-      setLoading(result.loading);
-      const { location, current, forecast } = result.data.forecast;
-      setLocation(location);
-      setCurrent(current);
-      setForecast(forecast);
-    });
-  }, []);
+  console.log(data)
 
   if (loading) {
     return 'Loading...';
+  }
+
+  if (error) {
+    return 'Error! ' + error.message
   }
 
   return (
     <>
       <header>
         <h1>s'weather.</h1>
-        Location: {location} <br />
-        Current: {current} <br />
-        Forecast: {forecast} <br />
+        Location: {data.weather.location.name} <br />
       </header>
     </>
   )
