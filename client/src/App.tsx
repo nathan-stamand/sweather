@@ -1,11 +1,7 @@
-import { ApolloClient, InMemoryCache, ApolloProvider, gql } from '@apollo/client';
-import { useEffect, useState } from 'react';
 import './App.css'
-
-const client = new ApolloClient({
-  uri: 'http://localhost:8000',
-  cache: new InMemoryCache(),
-});
+import { gql } from '@apollo/client';
+import { useEffect, useState } from 'react';
+import { client } from './lib/apollo-client';
 
 function App() {
   const [location, setLocation] = useState('');
@@ -18,8 +14,8 @@ function App() {
       query: gql`
         query GetForecast {
           forecast {
-            current,
-            location,
+            current
+            location
             forecast
           }
         }
