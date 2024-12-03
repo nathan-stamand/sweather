@@ -5,5 +5,7 @@ export type Location = {
   country: string;
   lat: number;
   lon: number;
+  tz_id: string,
   url: string;
+  localtime: string;
 }
