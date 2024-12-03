@@ -1,29 +1,45 @@
+import { ApolloClient, InMemoryCache, ApolloProvider, gql } from '@apollo/client';
 import { useEffect, useState } from 'react';
 import './App.css'
 
+const client = new ApolloClient({
+  uri: 'http://localhost:8000',
+  cache: new InMemoryCache(),
+});
+
 function App() {
-  const [message, setMessage] = useState('')
+  const [location, setLocation] = useState('');
+  const [current, setCurrent] = useState('');
+  const [forecast, setForecast] = useState('');
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    async function get() {
-      const response = await fetch('http://localhost:8000', {
-        mode: 'cors',
-        headers: {
-          'Access-Control-Allow-Origin': 'http://localhost:8000'
+    client.query({
+      query: gql`
+        query GetForecast {
+          forecast {
+            current,
+            location,
+            forecast
+          }
         }
-      });
-      const data = await response.json();
-      console.log(data);
-      setMessage(data.message);
-    }
-    get();
+     `,
+    }).then((result) => {
+      console.log(result)
+      const { location, current, forecast } = result.data.forecast;
+      setLocation(location);
+      setCurrent(current);
+      setForecast(forecast);
+    });
   }, []);
 
   return (
     <>
       <header>
         <h1>s'weather.</h1>
-        {message}
+        Location: {location} <br />
+        Current: {current} <br />
+        Forecast: {forecast} <br />
       </header>
     </>
   )
