@@ -1,4 +1,4 @@
-{
+export default {
   "current": {
     "last_updated_epoch": 1733192100,
     "last_updated": "2024-12-02 20:15",

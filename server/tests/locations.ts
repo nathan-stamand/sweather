@@ -1,4 +1,4 @@
-[
+export default [
   {
     "id": 2653934,
     "name": "Austin",
