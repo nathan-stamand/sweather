@@ -13,8 +13,8 @@ export const GET_LOCATIONS = gql`
 `
 
 export const GET_WEATHER = gql`
-  query Query {
-    weather {
+  query getWeather($search: String!) {
+    weather (search: $search) {
       location {
         name
       }
