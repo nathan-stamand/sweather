@@ -14,5 +14,6 @@ type Weather {
 
 type Query {
   weather: Weather
+  locations(search: String!): [Location]
 }
 `;
