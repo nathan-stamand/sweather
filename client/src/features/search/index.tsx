@@ -48,6 +48,8 @@ const Option = ({ location }: { location: Location }) => {
   const { url, name, region, country } = location;
 
   return (
-    <button type='button' onClick={() => setCurrentLocation(url)}>{name}, {region} | {country}</button>
+    <button type='button' onClick={() => setCurrentLocation(url)}>
+      {name}, {region} | {country}
+    </button>
   )
 }
