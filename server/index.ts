@@ -1,3 +1,4 @@
+import 'dotenv/config';
 import { ApolloServer } from '@apollo/server';
 import { ApolloServerPluginDrainHttpServer } from '@apollo/server/plugin/drainHttpServer'
 import { expressMiddleware } from '@apollo/server/express4';
@@ -20,7 +21,7 @@ await server.start();
 
 app.use(
   '/graphql',
-  cors<cors.CorsRequest>({ origin: 'http://localhost:3000' }),
+  cors<cors.CorsRequest>({ origin: process.env.CLIENT_URL }),
   express.json(),
   expressMiddleware(server),
 );
