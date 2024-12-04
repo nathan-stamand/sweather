@@ -1,7 +1,8 @@
 import { useQuery } from "@apollo/client";
 import { useState } from "react";
-import { GET_LOCATIONS } from "../../lib/queries";
+import { GET_LOCATIONS, GET_WEATHER } from "../../lib/queries";
 import { Location } from "../../types/location";
+import { useCurrentLocation } from "../../providers/current-location";
 
 export const Search = () => {
   const [search, setSearch] = useState('');
@@ -35,9 +36,18 @@ const Options = ({ search }: { search: string }) => {
 
   return (
     <div>
-      {data.locations.map((loc: Location) => (
-        <div key={loc.id}>{loc.name}</div>
+      {data.locations.map((location: Location) => (
+        <Option key={location.id} location={location} />
       ))}
     </div>
+  )
+}
+
+const Option = ({ location }: { location: Location }) => {
+  const { setCurrentLocation } = useCurrentLocation();
+  const { url, name, region, country } = location;
+
+  return (
+    <button type='button' onClick={() => setCurrentLocation(url)}>{name}, {region} | {country}</button>
   )
 }
