@@ -6,6 +6,7 @@ import express from 'express';
 import http from 'http';
 import cors from 'cors'
 import { resolvers, typeDefs } from './schema/index.js';
+import { WeatherAPI } from './weather-api.js';
 
 const port = 8000;
 const app = express();
@@ -23,11 +24,20 @@ app.use(
   '/graphql',
   cors<cors.CorsRequest>({ origin: process.env.CLIENT_URL }),
   express.json(),
-  expressMiddleware(server),
+  expressMiddleware(server, {
+    context: async () => {
+      const { cache } = server;
+      return {
+        dataSources: {
+          weatherAPI: new WeatherAPI({ cache }),
+        }
+      }
+    },
+  }),
 );
 
 await new Promise<void>((resolve) => httpServer.listen({
-  port
+  port,
 }, resolve));
 
 console.log(`Server running at http://localhost:${port}`)
