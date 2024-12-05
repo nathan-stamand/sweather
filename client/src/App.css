@@ -4,10 +4,18 @@ body {
 }
 
 #root {
-  width: 1000px;
+  width: 100%;
+  max-width: 600px;
 }
 
 header {
   grid-column: 1 / -1;
   padding: 10px;
+}
+
+.stack {
+  >*+* {
+    --space: 20px;
+    margin-top: var(--space);
+  }
 }

@@ -1,5 +1,12 @@
-.search {
+.search-box {
   position: relative;
+  margin-bottom: 30px;
+}
+
+#search {
+  padding: 15px;
+  border-radius: 15px;
+  border-style: solid;
 }
 
 .options {
@@ -10,11 +17,15 @@
   display: grid;
   gap: 10px;
   margin-top: 10px;
+  background-color: #242424;
 }
 
 .option {
   display: block;
   width: 100%;
+  border-radius: 15px;
+  border-style: solid;
+  padding: 10px;
 }
 
 .option__country {

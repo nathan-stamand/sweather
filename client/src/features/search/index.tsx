@@ -16,7 +16,7 @@ export const Search = () => {
   const [search, setSearch] = useState('');
 
   return (
-    <div className='search'>
+    <div className='search-box'>
       <input
         name='search'
         id='search'

@@ -2,6 +2,7 @@ import { useQuery } from "@apollo/client";
 import { GET_CURRENT } from "../../lib/queries";
 import { useCurrentLocation } from "../../providers/current-location";
 import { Spinner } from "../../components/spinner";
+import { Card } from "../../components/card";
 
 export const Current = () => {
   const { currentLocation } = useCurrentLocation();
@@ -9,6 +10,7 @@ export const Current = () => {
     variables: {
       search: currentLocation,
     },
+    pollInterval: 1000 * 60
   });
 
   if (loading) {
@@ -20,12 +22,17 @@ export const Current = () => {
     return null;
   }
 
+  const { locationName, country, condition, temperature } = data.current;
+
   return (
     <div>
-      <h1>{currentLocation}</h1>
-      <Icon src={data.current.condition.icon} alt={data.current.condition.text} />
-      <Temperature deg={data.current.temperature} />
-      <p><em>{data.current.condition.text}</em></p>
+      <Card>
+        <h1>{locationName}</h1>
+        <h2>{country}</h2>
+        <Icon src={condition.icon} alt={condition.text} />
+        <Temperature deg={temperature} />
+        <h3>{condition.text}</h3>
+      </Card>
     </div>
   )
 }
