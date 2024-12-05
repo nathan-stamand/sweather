@@ -1,4 +1,20 @@
-const current = `
+export const typeDefs = `#graphql
+
+type Location {
+  id: ID!
+  name: String!
+  region: String!
+  country: String!
+  url: String!
+}
+
+type Condition {
+  text: String
+  icon: String
+  code: Int
+}
+
+type Current {
   temperature: Float
   last_updated_epoch: Float
   last_updated: String
@@ -29,78 +45,10 @@ const current = `
   uv: Int
   gust_mph: Float
   gust_kph: Float
-`
-export const typeDefs = `#graphql
-
-type Location {
-  id: ID!
-  name: String!
-  region: String!
-  country: String!
-  url: String!
-}
-
-type Condition {
-  text: String
-  icon: String
-  code: Int
-}
-
-type Current {
-  ${current}
-}
-
-type Forecast {
-  forecastday: [ForecastDay]
-}
-
-type Hour {
-  ${current}
-  snow_cm: Float
-  will_it_rain: Boolean
-  chance_of_rain: Int
-  will_it_snow: Boolean
-  chance_of_snow: Int
-}
-
-type Day {
-  maxtemp_c: Float
-  maxtemp_f: Float
-  mintemp_c: Float
-  mintemp_f: Float
-  avgtemp_c: Float
-  avgtemp_f: Float
-  maxwind_mph: Float
-  maxwind_kph: Float
-  totalprecip_mm: Int
-  totalprecip_in: Float
-  totalsnow_cm: Int
-  avgvis_km: Float
-  avgvis_miles: Float
-  avghumidity: Int
-  daily_will_it_rain: Boolean
-  daily_chance_of_rain: Boolean
-  daily_will_it_snow: Boolean
-  daily_chance_of_snow: Boolean
-  condition: Condition
-  uv: Int
-  hour: [Hour]
-}
-
-type ForecastDay {
-  date: String
-  date_epoch: Int
-  day: Day
-}
-
-type Weather {
-  location: Location
-  current: Current
-  forecast: Forecast
 }
 
 type Query {
-  weather(search: String!): Weather
+  current(search: String!): Current
   locations(search: String!): [Location]
 }
 `
