@@ -27,7 +27,7 @@ export class WeatherAPI extends RESTDataSource {
     return this.get<Location[]>(endpoint);
   }
 
-  async getCurrent(query: string, fahrenheit: boolean, imperial: boolean) {
+  async getCurrent(query: string, fahrenheit: boolean = true, imperial: boolean = true) {
     const endpoint = this.getFullUrl('/current.json', query);
     const response = await this.get<CurrentAPIResponse>(endpoint);
 

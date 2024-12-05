@@ -25,10 +25,10 @@ type Current {
   # temp_f: Float
   # is_day: Boolean
   condition: Condition
-  # wind_mph: Float
-  # wind_kph: Float
-  # wind_degree: Int
-  # wind_dir: String
+  wind_mph: Float
+  wind_kph: Float
+  wind_degree: Int
+  wind_dir: String
   # pressure_mb: String
   # pressure_in: String
   # precip_mm: Int
@@ -52,6 +52,7 @@ type Current {
 
 type Query {
   current(search: String!, fahrenheit: Boolean, imperial: Boolean): Current
+  wind(search: String!): Current
   locations(search: String!): [Location]
 }
 `

@@ -25,3 +25,14 @@ export const GET_CURRENT = gql`
     }
   }
 `
+
+export const GET_WIND = gql`
+  query getWind($search: String!) {
+    current (search: $search)  {
+      wind_mph
+      wind_kph
+      wind_degree
+      wind_dir
+    }
+  }
+`
