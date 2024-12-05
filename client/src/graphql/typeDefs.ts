@@ -1,33 +1,34 @@
 const current = `
-  last_updated_epoch: Int
+  temperature: Float
+  last_updated_epoch: Float
   last_updated: String
-  temp_c: Int
-  temp_f: Int
+  temp_c: Float
+  temp_f: Float
   is_day: Boolean
   condition: Condition
-  wind_mph: Int
-  wind_kph: Int
+  wind_mph: Float
+  wind_kph: Float
   wind_degree: Int
   wind_dir: String
   pressure_mb: String
   pressure_in: String
   precip_mm: Int
-  precip_in: Int
+  precip_in: Float
   humidity: Int
   cloud: Int
-  feelslike_c: Int
-  feelslike_f: Int
-  windchill_c: Int
-  windchill_f: Int
+  feelslike_c: Float
+  feelslike_f: Float
+  windchill_c: Float
+  windchill_f: Float
   heatindex_c: Int
   heatindex_f: Int
   dewpoint_c: Int
   dewpoint_f: Int
-  vis_km: Int
-  vis_miles: Int
+  vis_km: Float
+  vis_miles: Float
   uv: Int
-  gust_mph: Int
-  gust_kph: Int
+  gust_mph: Float
+  gust_kph: Float
 `
 export const typeDefs = `#graphql
 
@@ -55,7 +56,7 @@ type Forecast {
 
 type Hour {
   ${current}
-  snow_cm: Int
+  snow_cm: Float
   will_it_rain: Boolean
   chance_of_rain: Int
   will_it_snow: Boolean
@@ -63,19 +64,19 @@ type Hour {
 }
 
 type Day {
-  maxtemp_c: Int
-  maxtemp_f: Int
-  mintemp_c: Int
-  mintemp_f: Int
-  avgtemp_c: Int
-  avgtemp_f: Int
-  maxwind_mph: Int
-  maxwind_kph: Int
+  maxtemp_c: Float
+  maxtemp_f: Float
+  mintemp_c: Float
+  mintemp_f: Float
+  avgtemp_c: Float
+  avgtemp_f: Float
+  maxwind_mph: Float
+  maxwind_kph: Float
   totalprecip_mm: Int
-  totalprecip_in: Int
+  totalprecip_in: Float
   totalsnow_cm: Int
-  avgvis_km: Int
-  avgvis_miles: Int
+  avgvis_km: Float
+  avgvis_miles: Float
   avghumidity: Int
   daily_will_it_rain: Boolean
   daily_chance_of_rain: Boolean
