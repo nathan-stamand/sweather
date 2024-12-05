@@ -30,7 +30,6 @@ export class WeatherAPI extends RESTDataSource {
 
     current.locationName = `${location.name}, ${location.region}`;
     current.country = location.country;
-    current.id = location.id;
     current.wind_mph = current.wind_mph + 'mph';
     current.wind_kph = current.wind_kph + 'kph';
 
