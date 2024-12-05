@@ -22,6 +22,6 @@ export const Wind = () => {
   const speed = useImperial ? wind_mph : wind_kph;
 
   return (
-    <h3>{speed} {wind_dir}</h3>
+    <h3>Wind: {speed} {wind_dir}</h3>
   )
 }
