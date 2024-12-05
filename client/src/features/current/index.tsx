@@ -1,15 +1,13 @@
 import { useQuery } from "@apollo/client";
-import { GET_WEATHER } from "../../lib/queries";
+import { GET_CURRENT } from "../../lib/queries";
 import { useCurrentLocation } from "../../providers/current-location";
 import { Spinner } from "../../components/spinner";
 
 export const Current = () => {
   const { currentLocation } = useCurrentLocation();
-  const { loading, error, data } = useQuery(GET_WEATHER, {
+  const { loading, error, data } = useQuery(GET_CURRENT, {
     variables: {
       search: currentLocation,
-      fahrenheit: true,
-      imperial: true,
     },
   });
 
@@ -25,9 +23,9 @@ export const Current = () => {
   return (
     <div>
       <h1>{currentLocation}</h1>
-      <Icon src={data.weather.current.condition.icon} alt={data.weather.current.condition.text} />
-      <Temperature deg={data.weather.current.temperature} />
-      {data.weather.current.condition.text}
+      <Icon src={data.current.condition.icon} alt={data.current.condition.text} />
+      <Temperature deg={data.current.temperature} />
+      <p><em>{data.current.condition.text}</em></p>
     </div>
   )
 }
