@@ -1,8 +1,6 @@
 import { Condition } from "./condition";
 
 type CustomProperties = {
-  id: number;
-  temperature: number;
   locationName: string;
   country: string;
 }
