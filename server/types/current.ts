@@ -1,6 +1,10 @@
 import { Condition } from "./condition";
 
-export type Current = {
+type CustomProperties = {
+  temperature: number;
+}
+
+export type Current = Partial<CustomProperties> & {
   last_updated_epoch: number;
   last_updated: string;
   temp_c: number;
