@@ -1,33 +1,45 @@
+import './styles.css';
 import { useQuery } from "@apollo/client";
-import { useState } from "react";
-import { GET_LOCATIONS, GET_WEATHER } from "../../lib/queries";
+import { createContext, Dispatch, SetStateAction, useContext, useState } from "react";
+import { GET_LOCATIONS } from "../../lib/queries";
 import { Location } from "../../types/location";
 import { useCurrentLocation } from "../../providers/current-location";
+import { Spinner } from "../../components/spinner";
+
+type SearchContext = {
+  search: string;
+  setSearch: Dispatch<SetStateAction<string>>;
+}
+const SearchString = createContext<SearchContext>({ search: '', setSearch: () => { } });
 
 export const Search = () => {
   const [search, setSearch] = useState('');
 
   return (
-    <div>
+    <div className='search'>
       <input
         name='search'
         id='search'
         onChange={e => setSearch(e.target.value)}
         value={search}
         placeholder="Find a location"
+        autoComplete='off'
       />
-      {search.length > 3 && <Options search={search} />}
+      <SearchString.Provider value={{ search, setSearch }}>
+        {search.length > 3 && <Options />}
+      </SearchString.Provider>
     </div>
   );
 }
 
-const Options = ({ search }: { search: string }) => {
+const Options = () => {
+  const { search } = useContext(SearchString);
   const { loading, error, data } = useQuery(GET_LOCATIONS, {
     variables: { search: search }
   });
 
   if (loading) {
-    return 'Loading...';
+    return <Spinner />
   }
 
   if (error) {
@@ -35,7 +47,7 @@ const Options = ({ search }: { search: string }) => {
   }
 
   return (
-    <div>
+    <div className='options'>
       {data.locations.map((location: Location) => (
         <Option key={location.id} location={location} />
       ))}
@@ -45,11 +57,18 @@ const Options = ({ search }: { search: string }) => {
 
 const Option = ({ location }: { location: Location }) => {
   const { setCurrentLocation } = useCurrentLocation();
+  const { setSearch } = useContext(SearchString);
   const { url, name, region, country } = location;
 
+  const handleClick = () => {
+    setSearch('');
+    setCurrentLocation(url)
+  }
+
   return (
-    <button type='button' onClick={() => setCurrentLocation(url)}>
-      {name}, {region} | {country}
+    <button className='option' type='submit' onClick={handleClick}>
+      {name}, {region}
+      <small className='option__country'>{country}</small>
     </button>
   )
 }

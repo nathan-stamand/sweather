@@ -1,5 +1,4 @@
 import { createContext, Dispatch, ReactNode, SetStateAction, useContext, useState } from "react";
-import { Location } from "../types/location";
 
 type CurrentLocationContext = {
   currentLocation: string;

@@ -1,1 +1,13 @@
+body {
+  display: grid;
+  place-items: center;
+}
 
+#root {
+  width: 1000px;
+}
+
+header {
+  grid-column: 1 / -1;
+  padding: 10px;
+}

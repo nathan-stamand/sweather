@@ -2,6 +2,7 @@ import { ApolloClient, ApolloProvider, HttpLink, InMemoryCache } from "@apollo/c
 import { ReactNode } from "react";
 import { typeDefs } from "../graphql/typeDefs";
 import { CurrentLocationProvider } from "./current-location";
+import { SettingsProvider } from "./settings";
 
 export const Providers = ({ children }: { children: ReactNode }) => {
   const client = new ApolloClient({

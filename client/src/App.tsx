@@ -1,11 +1,10 @@
 import './App.css'
 import { Search } from './features/search'
-import { useCurrentLocation } from './providers/current-location'
+import { Current } from './features/current';
+import { useCurrentLocation } from './providers/current-location';
 
 function App() {
   const { currentLocation } = useCurrentLocation();
-  console.log(currentLocation);
-
   return (
     <>
       <header>
@@ -13,6 +12,9 @@ function App() {
       </header>
       <main>
         <Search />
+        {currentLocation && (
+          <Current />
+        )}
       </main>
     </>
   )
