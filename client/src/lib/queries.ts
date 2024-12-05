@@ -12,18 +12,6 @@ export const GET_LOCATIONS = gql`
   }
 `
 
-export const GET_CURRENT = gql`
-  query getCurrent($search: String!, $fahrenheit: Boolean!, $imperial: Boolean!) {
-    current (search: $search, fahrenheit: $fahrenheit, imperial: $imperial)  {
-      temperature
-      condition {
-        icon
-        text
-      }
-    }
-  }
-`
-
 export const GET_WIND = gql`
   query getWind($search: String!) {
     current (search: $search)  {
