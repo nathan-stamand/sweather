@@ -1,10 +1,11 @@
 import './styles.css';
 import { useQuery } from "@apollo/client";
-import { createContext, Dispatch, SetStateAction, useContext, useState } from "react";
+import { createContext, Dispatch, SetStateAction, useContext, useEffect, useState } from "react";
 import { GET_LOCATIONS } from "../../lib/queries";
 import { Location } from "../../types/location";
 import { useCurrentLocation } from "../../providers/current-location";
 import { Spinner } from "../../components/spinner";
+import { useDebounce } from '../../hooks/useDebounce';
 
 type SearchContext = {
   search: string;
@@ -14,6 +15,13 @@ const SearchString = createContext<SearchContext>({ search: '', setSearch: () =>
 
 export const Search = () => {
   const [search, setSearch] = useState('');
+  const [_, setDebouncedSearch] = useState('');
+
+  const debouncedSearchValue = useDebounce(search);
+
+  useEffect(() => {
+    setDebouncedSearch(search);
+  }, [debouncedSearchValue]);
 
   return (
     <div className='search-box'>
@@ -26,7 +34,7 @@ export const Search = () => {
         autoComplete='off'
       />
       <SearchString.Provider value={{ search, setSearch }}>
-        {search.length > 3 && <Options />}
+        {search.length > 3 && debouncedSearchValue.length > 3 && <Options />}
       </SearchString.Provider>
     </div>
   );
@@ -43,7 +51,8 @@ const Options = () => {
   }
 
   if (error) {
-    return 'Error! ' + error.message
+    console.log('Error! ' + error.message);
+    return null;
   }
 
   return (
