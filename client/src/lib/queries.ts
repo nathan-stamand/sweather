@@ -13,8 +13,8 @@ export const GET_LOCATIONS = gql`
 `
 
 export const GET_CURRENT = gql`
-  query getCurrent($search: String!) {
-    current (search: $search)  {
+  query getCurrent($search: String!, $fahrenheit: Boolean!, $imperial: Boolean!) {
+    current (search: $search, fahrenheit: $fahrenheit, imperial: $imperial)  {
       temperature
       locationName
       country

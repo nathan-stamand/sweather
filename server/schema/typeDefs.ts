@@ -51,7 +51,7 @@ type Current {
 }
 
 type Query {
-  current(search: String!): Current
+  current(search: String!, fahrenheit: Boolean, imperial: Boolean): Current
   locations(search: String!): [Location]
 }
 `

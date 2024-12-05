@@ -3,12 +3,16 @@ import { GET_CURRENT } from "../../lib/queries";
 import { useCurrentLocation } from "../../providers/current-location";
 import { Spinner } from "../../components/spinner";
 import { Card } from "../../components/card";
+import { useSettings } from "../../providers/settings";
 
 export const Current = () => {
   const { currentLocation } = useCurrentLocation();
+  const { settings } = useSettings();
   const { loading, error, data } = useQuery(GET_CURRENT, {
     variables: {
       search: currentLocation,
+      fahrenheit: settings.Fahrenheit.value,
+      imperial: settings.Imperial.value,
     },
     pollInterval: 1000 * 60
   });
@@ -30,16 +34,18 @@ export const Current = () => {
         <h1>{locationName}</h1>
         <h2>{country}</h2>
         <Icon src={condition.icon} alt={condition.text} />
-        <Temperature deg={temperature} />
+        <Temperature deg={temperature} fahrenheit={settings.Fahrenheit.value} />
         <h3>{condition.text}</h3>
       </Card>
     </div>
   )
 }
 
-const Temperature = ({ deg }: { deg: number }) => {
+const Temperature = ({ deg, fahrenheit }: { deg: number, fahrenheit: boolean }) => {
+  const unit = fahrenheit ? 'F' : 'C';
+
   return (
-    <h1>{deg}<sup>&#176;F</sup></h1>
+    <h1>{deg}<sup>&#176;{unit}</sup></h1>
   )
 }
 
