@@ -11,6 +11,16 @@ body {
 header {
   grid-column: 1 / -1;
   padding: 10px;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  justify-items: end;
+  position: relative;
+  z-index: 100;
+}
+
+header h1 {
+  grid-column-start: 2;
 }
 
 hr {

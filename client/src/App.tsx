@@ -9,10 +9,8 @@ function App() {
   return (
     <>
       <header>
-        <hr />
         <h1>s'weather</h1>
         <Settings />
-        <hr />
       </header>
       <main>
         <Search />
