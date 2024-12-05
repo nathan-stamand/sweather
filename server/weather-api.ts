@@ -31,11 +31,14 @@ export class WeatherAPI extends RESTDataSource implements WeatherAPIStructure {
     const endpoint = this.getFullUrl('/current.json', query);
     const response = await this.get<CurrentAPIResponse>(endpoint);
 
-    const { current } = response;
+    const { location, current } = response;
 
     console.log(response)
 
     current.temperature = current.temp_f;
+    current.locationName = `${location.name}, ${location.region}`;
+    current.country = location.country;
+    current.id = location.id;
 
     return current;
   }
