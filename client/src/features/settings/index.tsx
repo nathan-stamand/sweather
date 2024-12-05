@@ -6,9 +6,6 @@ export const Settings = () => {
   const fahrenheit = settings.Fahrenheit.value ? 'Fahrenheit' : 'Celcius';
   const imperial = settings.Imperial.value ? 'Imperial' : 'Metric';
 
-  console.log(settings.Fahrenheit)
-  console.log(settings.Imperial)
-
   return (
     <ul>
       <li>

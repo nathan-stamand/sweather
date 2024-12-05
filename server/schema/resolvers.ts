@@ -6,6 +6,15 @@ export const resolvers = {
     wind: async (_, { search }, { dataSources }) => {
       return dataSources.weatherAPI.getCurrent(search);
     },
+    temperature: async (_, { search }, { dataSources }) => {
+      return dataSources.weatherAPI.getCurrent(search);
+    },
+    condition: async (_, { search }, { dataSources }) => {
+      return dataSources.weatherAPI.getCurrent(search);
+    },
+    location: async (_, { search }, { dataSources }) => {
+      return dataSources.weatherAPI.getCurrent(search);
+    },
     locations: async (_, { search }, { dataSources }) => {
       return dataSources.weatherAPI.getLocations(search);
     },

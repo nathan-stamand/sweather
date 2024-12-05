@@ -16,8 +16,6 @@ export const GET_CURRENT = gql`
   query getCurrent($search: String!, $fahrenheit: Boolean!, $imperial: Boolean!) {
     current (search: $search, fahrenheit: $fahrenheit, imperial: $imperial)  {
       temperature
-      locationName
-      country
       condition {
         icon
         text
@@ -33,6 +31,37 @@ export const GET_WIND = gql`
       wind_kph
       wind_degree
       wind_dir
+    }
+  }
+`
+
+export const GET_CONDITION = gql`
+  query getCondition($search: String!) {
+    current (search: $search)  {
+      condition {
+        text
+        icon
+      }
+    }
+  }
+`
+
+export const GET_LOCATION = gql`
+  query getLocation($search: String!) {
+    current (search: $search)  {
+      locationName
+      country
+    }
+  }
+`
+
+export const GET_TEMP = gql`
+  query getTemp($search: String!) {
+    current (search: $search)  {
+      temp_f
+      temp_c
+      feelslike_f
+      feelslike_c
     }
   }
 `

@@ -23,6 +23,3 @@ body {
 img {
   display: inline-block;
 }
-
-
-@media (prefers-color-scheme: dark) {}

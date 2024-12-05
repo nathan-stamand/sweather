@@ -21,12 +21,12 @@ type Current {
   country: String
   # last_updated_epoch: Float
   # last_updated: String
-  # temp_c: Float
-  # temp_f: Float
+  temp_c: Float
+  temp_f: Float
   # is_day: Boolean
   condition: Condition
-  wind_mph: Float
-  wind_kph: Float
+  wind_mph: String
+  wind_kph: String
   wind_degree: Int
   wind_dir: String
   # pressure_mb: String
@@ -35,8 +35,8 @@ type Current {
   # precip_in: Float
   # humidity: Int
   # cloud: Int
-  # feelslike_c: Float
-  # feelslike_f: Float
+  feelslike_c: Float
+  feelslike_f: Float
   # windchill_c: Float
   # windchill_f: Float
   # heatindex_c: Int
@@ -52,7 +52,10 @@ type Current {
 
 type Query {
   current(search: String!, fahrenheit: Boolean, imperial: Boolean): Current
+  condition(search: String!): Current
+  temperature(search: String!): Current
   wind(search: String!): Current
+  location(search: String!): Current 
   locations(search: String!): [Location]
 }
 `

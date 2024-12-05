@@ -14,8 +14,8 @@ export type Current = Partial<CustomProperties> & {
   temp_f: number;
   is_day: 0 | 1;
   condition: Condition;
-  wind_mph: number;
-  wind_kph: number;
+  wind_mph: number | string;
+  wind_kph: number | string;
   wind_degree: number
   wind_dir: string;
   pressure_mb: string;

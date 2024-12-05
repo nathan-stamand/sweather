@@ -2,10 +2,10 @@ import './styles.css';
 import { useQuery } from "@apollo/client";
 import { createContext, Dispatch, SetStateAction, useContext, useEffect, useState } from "react";
 import { GET_LOCATIONS } from "../../lib/queries";
-import { Location } from "../../types/location";
-import { useCurrentLocation } from "../../providers/current-location";
+import { useCurrentLocation } from "../../providers/currentLocation";
 import { Spinner } from "../../components/spinner";
 import { useDebounce } from '../../hooks/useDebounce';
+import { Location } from '../../types/location';
 
 type SearchContext = {
   search: string;

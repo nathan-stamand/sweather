@@ -1,7 +1,7 @@
 import './App.css'
 import { Search } from './features/search'
 import { Current } from './features/current';
-import { useCurrentLocation } from './providers/current-location';
+import { useCurrentLocation } from './providers/currentLocation';
 import { Settings } from './features/settings';
 
 function App() {
