@@ -5,7 +5,11 @@
   "module": "esnext",
   "main": "index.ts",
   "scripts": {
-    "start": "node --loader ts-node/esm index.ts"
+    "syncTypes": "cp -a types ../client/src/types",
+    "syncTypeDefs": "cp schema/typeDefs.ts ../client/src/graphql",
+    "deleteTypes": "rm -rf ../client/src/types",
+    "sync": "npm run deleteTypes; npm run syncTypes; npm run syncTypeDefs",
+    "start": "npm run sync; node --loader ts-node/esm index.ts"
   },
   "keywords": [],
   "author": "",
