@@ -12,15 +12,13 @@ export const GET_LOCATIONS = gql`
   }
 `
 
-export const GET_WEATHER = gql`
-  query getWeather($search: String!, $fahrenheit: Boolean!, $imperial: Boolean!) {
-    weather (search: $search, fahrenheit: $fahrenheit, imperial: $imperial) {
-      current {
-        temperature
-        condition {
-          icon
-          text
-        }
+export const GET_CURRENT = gql`
+  query getCurrent($search: String!) {
+    current (search: $search)  {
+      temperature
+      condition {
+        icon
+        text
       }
     }
   }
