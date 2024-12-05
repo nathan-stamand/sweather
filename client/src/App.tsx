@@ -8,7 +8,9 @@ function App() {
   return (
     <>
       <header>
+        <hr />
         <h1>s'weather</h1>
+        <hr />
       </header>
       <main>
         <Search />
