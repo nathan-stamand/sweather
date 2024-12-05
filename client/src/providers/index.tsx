@@ -19,7 +19,9 @@ export const Providers = ({ children }: { children: ReactNode }) => {
   return (
     <ApolloProvider client={client}>
       <CurrentLocationProvider>
-        {children}
+        <SettingsProvider>
+          {children}
+        </SettingsProvider>
       </CurrentLocationProvider>
     </ApolloProvider>
   )

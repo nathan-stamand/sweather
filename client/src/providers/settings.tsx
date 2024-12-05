@@ -38,8 +38,15 @@ export const SettingsProvider = ({ children }: { children: ReactNode }) => {
 export const useSettings = () => {
   const { settings, setSettings } = useContext(Settings);
 
+  const updateSetting = (setting: string, value: boolean) => {
+    setSettings((previousSettings) => ({
+      ...previousSettings,
+      [setting]: { ...previousSettings[setting], value },
+    }))
+  }
+
   return {
     settings,
-    setSettings,
+    updateSetting,
   }
 }
