@@ -22,9 +22,6 @@ export const Wind = () => {
   const speed = useImperial ? wind_mph : wind_kph;
 
   return (
-    <div>
-      <div>compass {wind_degree}</div>
-      <h3>{speed} {wind_dir}</h3>
-    </div>
+    <h3>{speed} {wind_dir}</h3>
   )
 }
