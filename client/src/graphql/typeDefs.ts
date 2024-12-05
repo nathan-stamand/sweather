@@ -15,36 +15,39 @@ type Condition {
 }
 
 type Current {
+  id: ID!
   temperature: Float
-  last_updated_epoch: Float
-  last_updated: String
-  temp_c: Float
-  temp_f: Float
-  is_day: Boolean
+  locationName: String
+  country: String
+  # last_updated_epoch: Float
+  # last_updated: String
+  # temp_c: Float
+  # temp_f: Float
+  # is_day: Boolean
   condition: Condition
-  wind_mph: Float
-  wind_kph: Float
-  wind_degree: Int
-  wind_dir: String
-  pressure_mb: String
-  pressure_in: String
-  precip_mm: Int
-  precip_in: Float
-  humidity: Int
-  cloud: Int
-  feelslike_c: Float
-  feelslike_f: Float
-  windchill_c: Float
-  windchill_f: Float
-  heatindex_c: Int
-  heatindex_f: Int
-  dewpoint_c: Int
-  dewpoint_f: Int
-  vis_km: Float
-  vis_miles: Float
-  uv: Int
-  gust_mph: Float
-  gust_kph: Float
+  # wind_mph: Float
+  # wind_kph: Float
+  # wind_degree: Int
+  # wind_dir: String
+  # pressure_mb: String
+  # pressure_in: String
+  # precip_mm: Int
+  # precip_in: Float
+  # humidity: Int
+  # cloud: Int
+  # feelslike_c: Float
+  # feelslike_f: Float
+  # windchill_c: Float
+  # windchill_f: Float
+  # heatindex_c: Int
+  # heatindex_f: Int
+  # dewpoint_c: Int
+  # dewpoint_f: Int
+  # vis_km: Float
+  # vis_miles: Float
+  # uv: Int
+  # gust_mph: Float
+  # gust_kph: Float
 }
 
 type Query {
