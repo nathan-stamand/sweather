@@ -16,6 +16,8 @@ export const GET_CURRENT = gql`
   query getCurrent($search: String!) {
     current (search: $search)  {
       temperature
+      locationName
+      country
       condition {
         icon
         text
